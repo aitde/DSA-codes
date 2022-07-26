@@ -2,21 +2,23 @@ import java.util.Scanner;
 
 public class PrimeTillN {
     public static void main(String[] args) {
-        Scanner scn = new Scanner(System.in);
-        int l = scn.nextInt();
-        int h = scn.nextInt();
+        Scanner sc = new Scanner(System.in);
+
+        int l = sc.nextInt();
+        int h = sc.nextInt();
 
         for (; l <= h; l++) {
-            boolean f = true;
+            boolean isPrime = true;
             for (int j = 2; j * j <= l; j++) {
                 if ((l % j) == 0) {
-                    f = false;
+                    isPrime = false;
                     break;
                 }
             }
-            if (f)
+            if (isPrime)
                 System.out.println(l);
         }
-        scn.close();
+
+        sc.close();
     }
 }
