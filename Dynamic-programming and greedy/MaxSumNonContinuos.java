@@ -27,10 +27,9 @@ public class MaxSumNonContinuos {
 
         if (picked == 0) {
             ans = arr[idx] + Math.max(ans, getMaxSum(arr, idx + 1, 1, dp));
-            ans = Math.max(ans, getMaxSum(arr, idx + 1, 0, dp));
-        } else {
-            ans = Math.max(ans, getMaxSum(arr, idx + 1, 0, dp));
         }
+        ans = Math.max(ans, getMaxSum(arr, idx + 1, 0, dp));
+
         dp[idx][picked] = ans;
         return ans;
     }
