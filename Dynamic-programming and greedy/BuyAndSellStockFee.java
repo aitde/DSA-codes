@@ -1,3 +1,4 @@
+
 import java.util.*;
 
 public class BuyAndSellStockFee {
@@ -13,36 +14,33 @@ public class BuyAndSellStockFee {
         }
         int fee = sc.nextInt();
 
-        int ans=0;
+        int max=0;
         int buy=price[0];
         int high = buy;
 
         for(int i=1; i<n; i++){
-            int curr=price[i];
-
-            if(curr > high){
-                high = curr;
+            if(price[i] < high){
+                if((high - price[i]) > fee){
+                    if(high - buy - fee > 0)
+                    max += high - buy - fee;
+                    buy = price[i];
+                    high = price[i];
+                }
+                else{
+                    if(buy > price[i]){
+                    buy = price[i];
+                    high = buy;
+                    }
+                }
             }
             else{
-                int profit = high-buy-fee;
-
-                if(profit < 0){
-                    buy = Math.min(buy, curr);
-                    high = buy;
-                    continue;
-                }
-
-                if(high-curr > fee){
-                    ans += profit;
-                    buy = curr;
-                    high = buy;
-                }
+                high = price[i];
             }
         }
 
         if((high - buy - fee) > 0)
-        ans += high - buy - fee;
-        System.out.println(ans);        
+        max += high - buy - fee;
+        System.out.println(max);        
     }
 
 }
