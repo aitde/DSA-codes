@@ -1,30 +1,28 @@
+
 import java.util.*;
 
 public class ClimbStairs {
+
     public static void main(String[] args) throws Exception {
-        Scanner sc = new Scanner(System.in);
+        Scanner sc=new Scanner(System.in);
         int n = sc.nextInt();
-
-        int ans = stairs(n, new int[n + 1]);
-        System.out.println(ans);
-        sc.close();
-    }
-
-    public static int stairs(int n, int[] dp) {
-        if (n == 1 || n == 0)
-            return 1;
-        if (n < 1)
-            return 0;
-
-        if (dp[n] != 0) {
-            return dp[n];
+        int[] dp = new int[n+1];
+        
+        dp[0] = 1;
+        
+        for(int i=1; i<=n; i++){
+            if(i==1)
+            dp[i]=dp[i-1];
+            
+            if(i==2)
+            dp[i] = dp[i-1]+dp[i-2];
+            
+            if(i >= 3)
+            dp[i] = dp[i-1]+dp[i-2]+dp[i-3];
         }
-
-        int x = stairs(n - 1, dp);
-        int y = stairs(n - 2, dp);
-        int z = stairs(n - 3, dp);
-
-        dp[n] = x + y + z;
-        return dp[n];
+        
+        System.out.println(dp[n]);
+        
     }
+    
 }
