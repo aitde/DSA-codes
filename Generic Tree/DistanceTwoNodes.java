@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class DistanceTwoNodes {
+public class Main {
   private static class Node {
     int data;
     ArrayList<Node> children = new ArrayList<>();
@@ -85,7 +85,11 @@ public class DistanceTwoNodes {
       int i=arr1.size()-1;
       int j =arr2.size()-1;
 
-      while((i>=0 && j>=0) && arr1.get(i)==arr2.get(j)){
+      while((i>=0 && j>=0)){
+
+        if(arr1.get(i) != arr2.get(j))
+        break;
+        
         i--;
         j--;
       }
