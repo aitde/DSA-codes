@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class PrintKLevel {
+public class Main {
   public static class Node {
     int data;
     Node left;
@@ -81,15 +81,29 @@ public class PrintKLevel {
 
   public static void printKLevelsDown(Node node, int k){
     
-    if(node == null)
-    return;
+    int level =0;
+    Queue<Node> que = new LinkedList<>();
+    que.add(node);
 
-    if(k==0){
-      System.out.println(node.data);
-      return;
+    while(que.size()!=0){
+      int size = que.size();
+
+      for(int i=0; i<size; i++){
+        Node tem = que.remove();
+
+        if(tem == null){
+          continue;
+        }
+
+        if(level == k){
+          System.out.println(tem.data);
+        }
+
+        que.add(tem.left);
+        que.add(tem.right);
+      }
+      level++;
     }
-    printKLevelsDown(node.left, k-1);
-    printKLevelsDown(node.right, k-1);
   }
 
   public static void main(String[] args) throws Exception {
