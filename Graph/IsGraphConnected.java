@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class IsGraphConnected {
+public class Main {
    static class Edge {
       int src;
       int nbr;
@@ -36,27 +36,25 @@ public class IsGraphConnected {
       
 
       boolean[] visited = new boolean[vtces];
-      ArrayList<ArrayList<Integer>> comps = new ArrayList<>();
+      int count = 0;
       for(int i=0; i<vtces; i++){
 
          if(!visited[i]){
-            ArrayList<Integer> helper = new ArrayList<>();
-            traverse(graph, i, visited, helper);
-            comps.add(helper);
+            count++;
+            traverse(graph, i, visited);
          }
       }
 
-      System.out.println(comps.size()==1);
+      System.out.println(count==1);
    }
-   public static void traverse(ArrayList<Edge>[] graph, int src, boolean[] visited, ArrayList<Integer>helper){
+   public static void traverse(ArrayList<Edge>[] graph, int src, boolean[] visited){
 
       visited[src] = true;
-      helper.add(src);
 
       for(Edge e : graph[src]){
          int nbr = e.nbr;
          if(!visited[nbr]){
-            traverse(graph, nbr, visited, helper);
+            traverse(graph, nbr, visited);
          }
       }
    }
